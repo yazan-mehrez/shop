@@ -1,11 +1,38 @@
-import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import {NgModule} from '@angular/core';
+import {PreloadAllModules, RouterModule, Routes} from '@angular/router';
 
 
-const routes: Routes = [];
+const routes: Routes = [
+  {
+    path: 'home',
+    loadChildren: () => import('../modules/homepage.module').then(m => m.HomepageModule),
+    data: {
+      title: '_Home'
+    }
+  },
+  {
+    path: '',
+    loadChildren: () => import('../modules/homepage.module').then(m => m.HomepageModule),
+    data: {
+      title: '_Home'
+    },
+    pathMatch: 'full'
+  },
+
+  {
+    path: '**',
+    redirectTo: 'page-404',
+    pathMatch: 'full'
+  }];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, {
+    scrollPositionRestoration: 'disabled',
+    relativeLinkResolution: 'corrected',
+    preloadingStrategy: PreloadAllModules,
+    initialNavigation: 'enabled'
+  })],
   exports: [RouterModule]
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {
+}
