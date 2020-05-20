@@ -17,6 +17,7 @@ import {ConfigService} from '../shared/utils/config.service';
 import {AuthGuard} from '../guards/auth.guard';
 import {ErrorDialogComponent} from '../providers/error-dialog/errordialog.component';
 import { MatDialogModule } from '@angular/material/dialog';
+import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.component';
 
 export function HttpLoaderFactory(httpClient: HttpClient) {
   return new MultiTranslateHttpLoader(httpClient, [

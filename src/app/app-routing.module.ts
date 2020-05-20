@@ -18,7 +18,14 @@ const routes: Routes = [
     },
     pathMatch: 'full'
   },
-
+  {
+    path: 'page-404',
+    loadChildren: () => import('../modules/page-not-found.module').then(m => m.PageNotFoundModule),
+    data: {
+      title: '_Home'
+    },
+    pathMatch: 'full'
+  },
   {
     path: '**',
     redirectTo: 'page-404',

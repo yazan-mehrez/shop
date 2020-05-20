@@ -10,6 +10,10 @@
 
 @import "aos";
 
+// Font Awesome Styles
+$fa-font-path: "~font-awesome/fonts";
+@import "~font-awesome/scss/font-awesome";
+
 // Main Material Styles
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
 
