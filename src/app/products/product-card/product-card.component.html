@@ -20,8 +20,7 @@
     </div>
     <div class="buy d-flex justify-content-between align-items-center">
       <div class="price text-primary">
-        <h6 class="mt-4"><span *ngIf="!total">{{product.price}}</span> <span
-          *ngIf="total">{{total}}</span> {{product.currency}}</h6>
+        <h6 class="mt-4"><span >{{product.price}} </span> {{product.currency}}</h6>
       </div>
       <button (click)="addToCart()" class="btn btn-danger mt-3" [disabled]="added">
         <i class="fa fa-shopping-cart mx-1">

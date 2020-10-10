@@ -22,8 +22,10 @@ export class CartComponent implements OnInit {
 
   reCalculate() {
     this.cartService.updateList(this.allProductsInformation);
-    this.cartService.calculateTotal();
-    this.totalPrice = this.cartService.calculateTotal().total;
+    if (this.cartService.calculateTotal()) {
+      this.cartService.calculateTotal();
+      this.totalPrice = this.cartService.calculateTotal().total;
+    }
     this.cartService.$detectCartChanges.next(true);
   }
 

@@ -14,8 +14,6 @@ export class CartRowComponent implements OnInit {
   @Output() detectChanges = new EventEmitter();
   @Output() deleteItem = new EventEmitter();
 
-  originalPrice: number;
-
   configuration = {
     max: this.cartService.configuration.max,
     min: this.cartService.configuration.min
@@ -26,18 +24,15 @@ export class CartRowComponent implements OnInit {
 
   increase(product) {
     this.cartService.increase(product, this.quantityControl);
-    this.product.price = this.originalPrice * this.quantityControl.value;
     this.detectChanges.emit();
   }
 
   decrease(product) {
     this.cartService.decrease(product, this.quantityControl);
-    this.product.price = this.originalPrice * this.quantityControl.value;
     this.detectChanges.emit();
   }
 
   ngOnInit() {
-    this.originalPrice = this.product.price / this.product.quantity;
     this.quantityControl.setValue(this.product.quantity);
   }
 

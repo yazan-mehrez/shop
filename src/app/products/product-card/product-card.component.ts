@@ -28,7 +28,6 @@ export class ProductCardComponent implements OnInit {
   addToCart() {
     const model = new AddToCart();
     model.product = this.product;
-    model.total = this.total ? this.total : this.product.price;
     this.addedToCart.emit(model);
     this.added = true;
     setTimeout(() => {

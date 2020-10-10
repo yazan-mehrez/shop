@@ -34,13 +34,11 @@ export class CartService {
       const listOfProducts: Product[] = JSON.parse(localStorage.getItem('products')) as Product[];
       listOfProducts.forEach(item => {
         if (item.id === product.id) {
-          item.price += total;
           item.quantity += product.quantity;
           isExist = true;
         }
       });
       if (!isExist) {
-        product.price = product.price * product.quantity;
         listOfProducts.push(product);
       }
       localStorage.setItem('products', JSON.stringify(listOfProducts));
@@ -55,7 +53,7 @@ export class CartService {
     let result = new AddToCart();
     if (listOfProducts) {
       listOfProducts.forEach(product => {
-        total += product.price;
+        total += product.price * product.quantity;
         quantity += product.quantity;
       });
       result.quantity = quantity;

@@ -1,6 +1,6 @@
 <div class="container mt-5">
-  <div class="row" *ngIf="allProductsInformation">
-    <div class="col-md-12 mt-5" *ngIf="allProductsInformation.length > 0">
+  <div class="row" *ngIf="allProductsInformation; else empty">
+    <div class="col-md-12 mt-5" *ngIf="allProductsInformation.length > 0; else empty">
       <div class="row mb-5 font-weight-bold bg-light">
         <div class="col-md-2 text-center">Image</div>
         <div class="col-md-3 text-center">Description</div>
@@ -15,12 +15,15 @@
         <h3>Total: <span class="text-primary">{{totalPrice}}</span></h3>
       </div>
     </div>
-    <div class="col-md-12 text-center" *ngIf="allProductsInformation.length === 0">
-      <img src="assets/images/empty.svg" alt="" class="mt-5 mx-auto" width="40%">
-      <h1 class="mt-3 text-primary">Empty Cart</h1>
-    </div>
   </div>
 
-
+  <ng-template #empty>
+    <div class="row">
+      <div class="col-md-12 text-center">
+        <img src="assets/images/empty.svg" alt="" class="mt-5 mx-auto" width="40%">
+        <h1 class="mt-3 text-primary">Empty Cart</h1>
+      </div>
+    </div>
+  </ng-template>
 </div>
 

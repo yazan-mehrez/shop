@@ -11,7 +11,7 @@
     </ul>
   </div>
   <div class="col-md-2 text-center">
-    {{originalPrice}} {{product.currency}}
+    {{product.price}} {{product.currency}}
   </div>
   <div class="col-md-2 text-center">
     <div class="d-flex align-items-center">
@@ -26,7 +26,7 @@
     </div>
   </div>
   <div class="col-md-2 text-center">
-    {{product.price}} {{product.currency}}
+    {{product.price * product.quantity}} {{product.currency}}
   </div>
 
   <div class="col-md-1 text-center">
