@@ -1,3 +1,6 @@
 body {
   @include text-align(left);
 }
+.card-img-overlay {
+  bottom: auto;
+}

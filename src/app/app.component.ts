@@ -10,7 +10,7 @@ import {AppTitleService} from './app.title.service';
 })
 export class AppComponent implements OnInit {
 
-  constructor(public _appService: AppService,
+  constructor(public appService: AppService,
               private metaTagService: Meta,
               private appTitle: AppTitleService) {
 
@@ -21,8 +21,8 @@ export class AppComponent implements OnInit {
 
   ngOnInit() {
     /*** Language Subscription **/
-    this._appService.language.subscribe(language => {
-      this._appService.currentLanguage = language === 'en' ? 'en' : 'ar';
+    this.appService.language.subscribe(language => {
+      this.appService.currentLanguage = language === 'en' ? 'en' : 'ar';
       switch (language) {
         case ('en') :
           document.documentElement.setAttribute('lang', 'en');

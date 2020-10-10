@@ -1,9 +1,10 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
-import {HomeComponent} from '../app/home/home.component';
+import {HomeComponent} from './home.component';
 import {RouterModule, Routes} from '@angular/router';
-import {BootstrapCarouselModule} from '../components/bootstrap-carousel/bootstrap-carousel.module';
+import {BootstrapCarouselModule} from '../../components/bootstrap-carousel/bootstrap-carousel.module';
 import {HttpClientModule} from '@angular/common/http';
+import {ProductModule} from "../../modules/product.module";
 
 const routes: Routes = [
   {
@@ -20,8 +21,9 @@ const routes: Routes = [
     CommonModule,
     BootstrapCarouselModule,
     HttpClientModule,
+    ProductModule,
     RouterModule.forChild(routes)
   ]
 })
-export class HomepageModule {
+export class HomeModule {
 }

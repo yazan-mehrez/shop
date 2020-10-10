@@ -24,10 +24,10 @@ export class AppTitleService {
     private router: Router,
     private activatedRoute: ActivatedRoute,
     private titleService: Title,
-    private _appService: AppService,
+    private appService: AppService,
     private translate: TranslateService
   ) {
-    this._appService.language.subscribe(() => {
+    this.appService.language.subscribe(() => {
       this.$onLangChange = this.translate.onLangChange.subscribe((event: LangChangeEvent) => {
         const child = this.activatedRoute.firstChild;
         if (child) {

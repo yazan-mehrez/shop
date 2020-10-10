@@ -1,0 +1,26 @@
+.quantity {
+  text-align: center;
+  background: #ececec;
+
+  label {
+    width: 100%;
+    margin: 0;
+  }
+
+  input {
+    border: none;
+    background: transparent;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    margin: auto;
+    width: auto;
+    height: 100%;
+  }
+}
+
+img {
+  height: 200px;
+  object-fit: contain;
+}
+

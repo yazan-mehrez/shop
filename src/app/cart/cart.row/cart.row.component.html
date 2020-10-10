@@ -1,0 +1,38 @@
+<div class="row mb-3">
+  <div class="col-md-2 text-center">
+    <img src="{{product.image}}" width="100px"
+         alt="">
+  </div>
+
+  <div class="col-md-3 text-center">
+    <ul class="cart-table__options">
+      <li>{{product.description}}</li>
+      <li>{{product.brand}}</li>
+    </ul>
+  </div>
+  <div class="col-md-2 text-center">
+    {{originalPrice}} {{product.currency}}
+  </div>
+  <div class="col-md-2 text-center">
+    <div class="d-flex align-items-center">
+      <button (click)="decrease(product)" class="mx-2 font-weight-bold border-0">-</button>
+      <label class="m-0">
+        <input class="text-primary font-weight-bold text-center" type="number"
+               readonly [min]="configuration.min" [max]="configuration.max"
+               minlength="1" maxlength="3" [formControl]="quantityControl">
+      </label>
+      <button (click)="increase(product)" class="mx-2 font-weight-bold border-0">+</button>
+      {{product.unit}}
+    </div>
+  </div>
+  <div class="col-md-2 text-center">
+    {{product.price}} {{product.currency}}
+  </div>
+
+  <div class="col-md-1 text-center">
+    <button type="button" (click)="removeItem(product)" class="btn btn-light btn-sm btn-svg-icon">
+      <i class="fa fa-trash" ></i>
+    </button>
+  </div>
+
+</div>

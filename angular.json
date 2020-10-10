@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "mahalaty": {
+    "my-website": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -17,7 +17,10 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/mahalaty",
+            "allowedCommonJsDependencies": [
+              "rxjs"
+            ],
+            "outputPath": "dist/my-website",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -69,18 +72,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "mahalaty:build"
+            "browserTarget": "my-website:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "mahalaty:build:production"
+              "browserTarget": "my-website:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "mahalaty:build"
+            "browserTarget": "my-website:build"
           }
         },
         "test": {
@@ -117,15 +120,15 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "mahalaty:serve"
+            "devServerTarget": "my-website:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "mahalaty:serve:production"
+              "devServerTarget": "my-website:serve:production"
             }
           }
         }
       }
     }},
-  "defaultProject": "mahalaty"
+  "defaultProject": "my-website"
 }
