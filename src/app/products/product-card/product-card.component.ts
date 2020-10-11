@@ -1,8 +1,8 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {Product} from 'src/models/Product';
-import {FormControl} from "@angular/forms";
-import {AddToCart} from "../../../models/AddToCart";
-import {CartService} from "../../cart/cart.service";
+import {FormControl} from '@angular/forms';
+import {AddToCart} from '../../../models/AddToCart';
+import {CartService} from '../../cart/cart.service';
 
 @Component({
   selector: 'app-product-card',
@@ -10,22 +10,22 @@ import {CartService} from "../../cart/cart.service";
   styleUrls: ['./product-card.component.scss']
 })
 export class ProductCardComponent implements OnInit {
-  @Input() product: Product;
-  @Output() addedToCart: EventEmitter<AddToCart> = new EventEmitter();
+  @Input() public product: Product;
+  @Output() public addedToCart: EventEmitter<AddToCart> = new EventEmitter();
 
-  added: boolean;
-  quantityControl = new FormControl();
-  total: number;
+  public added: boolean;
+  public quantityControl = new FormControl();
+  public total: number;
 
-  configuration = {
+  public configuration = {
     max: this.cartService.configuration.max,
     min: this.cartService.configuration.min
-  }
+  };
 
   constructor(private cartService: CartService) {
   }
 
-  addToCart() {
+  public addToCart() {
     const model = new AddToCart();
     model.product = this.product;
     this.addedToCart.emit(model);
@@ -35,24 +35,26 @@ export class ProductCardComponent implements OnInit {
     }, 2000);
   }
 
-  increase() {
+  public increase() {
     this.cartService.increase(this.product, this.quantityControl);
   }
 
-  decrease() {
+  public decrease() {
     this.cartService.decrease(this.product, this.quantityControl);
   }
 
   ngOnInit(): void {
+    if(this.product) {
+      this.product.quantity = 1;
+    }
     this.quantityControl.setValue(1);
-    this.product.quantity = 1;
     this.quantityControl.valueChanges.subscribe(value => {
       if (value === '') {
         this.total = this.product.price;
       } else {
         this.total = value * this.product.price;
       }
-    })
+    });
   }
 
 }

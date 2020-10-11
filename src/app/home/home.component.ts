@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
-import {Currency, Product, Unit} from "../../models/Product";
-import {AddToCart} from "../../models/AddToCart";
-import {CartService} from "../cart/cart.service";
+import {Currency, Product, Unit} from '../../models/Product';
+import {AddToCart} from '../../models/AddToCart';
+import {CartService} from '../cart/cart.service';
 
 @Component({
   selector: 'app-home',
@@ -9,7 +9,7 @@ import {CartService} from "../cart/cart.service";
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
-  listOfProducts: Product[] = [
+  public listOfProducts: Product[] = [
     {
       id: 1,
       name: 'Potato',
@@ -49,14 +49,14 @@ export class HomeComponent implements OnInit {
       currency: Currency.AED,
       entryDate: new Date()
     }
-  ]
+  ];
 
 
-  constructor(private  cartService: CartService) {
+  constructor(private cartService: CartService) {
   }
 
 
-  addToCart(cart: AddToCart) {
+  public addToCart(cart: AddToCart) {
     this.cartService.addToCart(cart.product, cart.total);
   }
 

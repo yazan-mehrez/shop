@@ -7,7 +7,7 @@ import {TranslateService} from '@ngx-translate/core';
 })
 export class AppService {
   public language = new BehaviorSubject<string>(null);
-  currentLanguage: string;
+  public currentLanguage: string;
 
   constructor(private translate: TranslateService) {
 
@@ -22,7 +22,7 @@ export class AppService {
   }
 
   /* Switch Language */
-  switchLanguage(language: string) {
+  public switchLanguage(language: string) {
     localStorage.setItem('language', language);
     this.language.next(language);
     this.translate.use(language);

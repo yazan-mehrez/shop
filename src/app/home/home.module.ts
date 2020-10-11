@@ -4,7 +4,7 @@ import {HomeComponent} from './home.component';
 import {RouterModule, Routes} from '@angular/router';
 import {BootstrapCarouselModule} from '../../components/bootstrap-carousel/bootstrap-carousel.module';
 import {HttpClientModule} from '@angular/common/http';
-import {ProductModule} from "../../modules/product.module";
+import {ProductModule} from '../../modules/product.module';
 
 const routes: Routes = [
   {

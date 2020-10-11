@@ -1,30 +1,29 @@
 import {Injectable} from '@angular/core';
-import {Product} from "../../models/Product";
-import {BehaviorSubject, Subject} from "rxjs";
+import {Product} from '../../models/Product';
+import {BehaviorSubject, Subject} from 'rxjs';
 import {ProcessType} from 'src/models/ProcessType';
-import {AddToCart} from "../../models/AddToCart";
-import {FormControl} from "@angular/forms";
+import {AddToCart} from '../../models/AddToCart';
+import {FormControl} from '@angular/forms';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CartService {
-  listOfProducts: Product[] = [];
-  totalAmount = 0;
-  $itemAddedSubscription: BehaviorSubject<Product> = new BehaviorSubject(null)
-  $itemDeletedSubscription: BehaviorSubject<Product> = new BehaviorSubject(null)
-  $detectCartChanges = new Subject();
+  private readonly listOfProducts: Product[] = [];
+  public $itemAddedSubscription: BehaviorSubject<Product> = new BehaviorSubject(null);
+  public $itemDeletedSubscription: BehaviorSubject<Product> = new BehaviorSubject(null);
+  public $detectCartChanges = new Subject();
 
-  configuration = {
+  public configuration = {
     max: 100,
     min: 1
-  }
+  };
 
   constructor() {
     this.listOfProducts = localStorage.getItem('products') ? (JSON.parse(localStorage.getItem('products')) as Product[]) : [];
   }
 
-  addToCart(product: Product, total: number) {
+  public addToCart(product: Product, total: number) {
     if (this.listOfProducts.length === 0) {
       this.listOfProducts.push(product);
       localStorage.setItem('products', JSON.stringify(this.listOfProducts));
@@ -46,11 +45,11 @@ export class CartService {
     }
   }
 
-  calculateTotal(): AddToCart {
+  public calculateTotal(): AddToCart {
     const listOfProducts: Product[] = JSON.parse(localStorage.getItem('products')) as Product[];
     let total = 0;
     let quantity = 0;
-    let result = new AddToCart();
+    const result = new AddToCart();
     if (listOfProducts) {
       listOfProducts.forEach(product => {
         total += product.price * product.quantity;
@@ -63,7 +62,7 @@ export class CartService {
     return null;
   }
 
-  getAllProducts(): Product[] {
+  public getAllProducts(): Product[] {
     const listOfProducts: Product[] = JSON.parse(localStorage.getItem('products')) as Product[];
     if (listOfProducts) {
       return listOfProducts;
@@ -71,18 +70,7 @@ export class CartService {
     return null;
   }
 
-  getTotalPrice(): number {
-    let allProducts: Product[] = this.getAllProducts();
-    if (allProducts) {
-      allProducts.forEach(item => {
-        this.totalAmount += item.price;
-      })
-      return this.totalAmount;
-    }
-    return 0;
-  }
-
-  cartListener(product: Product, processType: ProcessType) {
+  private cartListener(product: Product, processType: ProcessType) {
     if (processType === ProcessType.Added) {
       this.$itemAddedSubscription.next(product);
     } else {
@@ -90,17 +78,17 @@ export class CartService {
     }
   }
 
-  updateList(products: Product[] = null) {
+  public updateList(products: Product[] = null) {
     if (products) {
-      localStorage.setItem('products', JSON.stringify(products))
+      localStorage.setItem('products', JSON.stringify(products));
     } else {
       this.getAllProducts();
     }
   }
 
-  removeItem(product: Product, listOfProducts: Product[]) {
+  public removeItem(product: Product, listOfProducts: Product[]) {
     if (listOfProducts) {
-      let i = listOfProducts.findIndex(item => item.id === product.id);
+      const i = listOfProducts.findIndex(item => item.id === product.id);
       listOfProducts.splice(i, 1);
     } else {
       listOfProducts = JSON.parse(localStorage.getItem('products')) as Product[];
@@ -108,7 +96,7 @@ export class CartService {
     this.updateList(listOfProducts);
   }
 
-  increase(product: Product, input: FormControl) {
+  public increase(product: Product, input: FormControl) {
     let quantity = input.value;
     quantity += 1;
     if (quantity <= this.configuration.max) {
@@ -117,7 +105,7 @@ export class CartService {
     }
   }
 
-  decrease(product: Product, input: FormControl) {
+  public decrease(product: Product, input: FormControl) {
     let quantity = input.value;
     quantity -= 1;
     if (quantity >= this.configuration.min) {

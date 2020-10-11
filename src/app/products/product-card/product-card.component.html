@@ -1,4 +1,4 @@
-<div class="card mt-3">
+<div class="card mt-3" *ngIf="product">
   <img class="card-img" [src]="product.image" [alt]="product.name">
   <div class="card-img-overlay d-flex justify-content-end">
     <a href="#" class="card-link text-danger like">

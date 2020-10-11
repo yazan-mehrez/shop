@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
-import {CartService} from "./cart.service";
-import {Product} from "../../models/Product";
+import {CartService} from './cart.service';
+import {Product} from '../../models/Product';
 
 @Component({
   selector: 'app-cart',
@@ -8,8 +8,8 @@ import {Product} from "../../models/Product";
   styleUrls: ['./cart.component.scss']
 })
 export class CartComponent implements OnInit {
-  allProductsInformation: Product[];
-  totalPrice: number;
+  public allProductsInformation: Product[];
+  public totalPrice: number;
 
   constructor(private cartService: CartService) {
   }
@@ -20,7 +20,7 @@ export class CartComponent implements OnInit {
     this.reCalculate();
   }
 
-  reCalculate() {
+  public reCalculate() {
     this.cartService.updateList(this.allProductsInformation);
     if (this.cartService.calculateTotal()) {
       this.cartService.calculateTotal();
@@ -29,7 +29,7 @@ export class CartComponent implements OnInit {
     this.cartService.$detectCartChanges.next(true);
   }
 
-  deleteItem(product: Product) {
+  public deleteItem(product: Product) {
     this.cartService.removeItem(product, this.allProductsInformation);
     this.reCalculate();
   }

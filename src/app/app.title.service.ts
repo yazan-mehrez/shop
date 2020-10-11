@@ -17,8 +17,8 @@ const SEPARATOR = ' - ';
   providedIn: 'root'
 })
 export class AppTitleService {
-  $onLangChange: Subscription;
-  $onDefaultLangChange: Subscription;
+  private $onLangChange: Subscription;
+  private $onDefaultLangChange: Subscription;
 
   constructor(
     private router: Router,
@@ -27,12 +27,13 @@ export class AppTitleService {
     private appService: AppService,
     private translate: TranslateService
   ) {
+    const title = 'title';
     this.appService.language.subscribe(() => {
       this.$onLangChange = this.translate.onLangChange.subscribe((event: LangChangeEvent) => {
         const child = this.activatedRoute.firstChild;
         if (child) {
-          if (child.snapshot.data['title']) {
-            this.titleService.setTitle(APP_TITLE + ' - ' + this.translate.instant(child.snapshot.data['title']));
+          if (child.snapshot.data[title]) {
+            this.titleService.setTitle(APP_TITLE + ' - ' + this.translate.instant(child.snapshot.data[title]));
           }
         }
         this.$onLangChange.unsubscribe();
@@ -40,8 +41,8 @@ export class AppTitleService {
       this.$onDefaultLangChange = this.translate.onDefaultLangChange.subscribe((event: LangChangeEvent) => {
         const child = this.activatedRoute.firstChild;
         if (child) {
-          if (child.snapshot.data['title']) {
-            this.titleService.setTitle(APP_TITLE + ' - ' + this.translate.instant(child.snapshot.data['title']));
+          if (child.snapshot.data[title]) {
+            this.titleService.setTitle(APP_TITLE + ' - ' + this.translate.instant(child.snapshot.data[title]));
           }
         }
         this.$onDefaultLangChange.unsubscribe();
@@ -49,15 +50,14 @@ export class AppTitleService {
     });
   }
 
-  // tslint:disable-next-line:member-ordering
-  static ucFirst(string) {
-    if (!string) {
-      return string;
+  public static ucFirst(value) {
+    if (!value) {
+      return value;
     }
-    return string.charAt(0).toUpperCase() + string.slice(1);
+    return value.charAt(0).toUpperCase() + value.slice(1);
   }
 
-  init() {
+  public init() {
     this.router.events
       .filter((event) => event instanceof NavigationEnd)
       .map(() => {
