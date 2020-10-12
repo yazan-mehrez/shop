@@ -11,7 +11,7 @@ export class RoleGuard implements CanActivateChild {
   constructor(private router: Router, public jwtService: JWTService) {
   }
 
-  canActivateChild(route: ActivatedRouteSnapshot): boolean {
+  public canActivateChild(route: ActivatedRouteSnapshot): boolean {
 
     const expectedRole = route.data.expectedRole as string;
     if (this.jwtService.hasToken() && expectedRole && this.jwtService.hasRole(expectedRole)) {

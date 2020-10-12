@@ -43,8 +43,8 @@ export class ProductCardComponent implements OnInit {
     this.cartService.decrease(this.product, this.quantityControl);
   }
 
-  ngOnInit(): void {
-    if(this.product) {
+  public ngOnInit(): void {
+    if (this.product) {
       this.product.quantity = 1;
     }
     this.quantityControl.setValue(1);

@@ -5,13 +5,13 @@ import {environment} from '../../environments/environment';
 export class ConfigService {
 
   // tslint:disable-next-line:variable-name
-  _apiURI: string;
+  public _apiURI: string;
 
   constructor() {
     this._apiURI = environment.apiURI;
   }
 
-  getApiURI() {
+  public getApiURI() {
     return this._apiURI;
   }
 }

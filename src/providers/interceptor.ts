@@ -1,5 +1,13 @@
 import {Inject, Injectable, PLATFORM_ID} from '@angular/core';
-import {HttpErrorResponse, HttpEvent, HttpHandler, HttpHeaders, HttpInterceptor, HttpRequest, HttpResponse} from '@angular/common/http';
+import {
+  HttpErrorResponse,
+  HttpEvent,
+  HttpHandler,
+  HttpHeaders,
+  HttpInterceptor,
+  HttpRequest,
+  HttpResponse
+} from '@angular/common/http';
 import {ErrorDialogService} from './error-dialog/errordialog.service';
 import {makeStateKey, TransferState} from '@angular/platform-browser';
 import {Observable, of, throwError} from 'rxjs';
@@ -15,7 +23,7 @@ export class InterceptorProvider implements HttpInterceptor {
   }
 
   // Intercepts all HTTP requests!
-  intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+  public intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     const token: string = localStorage.getItem('auth_token');
     const language: string = localStorage.getItem('language') || 'en';
 

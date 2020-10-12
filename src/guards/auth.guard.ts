@@ -6,7 +6,7 @@ import { JWTService } from '../shared/utils/JWTtoken.service';
 export class AuthGuard implements CanActivate {
   constructor(private router: Router, public jwtService: JWTService) {}
 
-  canActivate() {
+  public canActivate() {
 
     if (this.jwtService.isExpired()) {
       this.router.navigate(['/']);

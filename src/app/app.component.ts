@@ -19,7 +19,7 @@ export class AppComponent implements OnInit {
 
   }
 
-  ngOnInit() {
+  public ngOnInit() {
     /*** Language Subscription **/
     this.appService.language.subscribe(language => {
       this.appService.currentLanguage = language === 'en' ? 'en' : 'ar';

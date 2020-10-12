@@ -32,7 +32,7 @@ export class CartRowComponent implements OnInit {
     this.detectChanges.emit();
   }
 
-  ngOnInit() {
+  public ngOnInit() {
     if (this.product) {
       this.quantityControl.setValue(this.product.quantity);
     }

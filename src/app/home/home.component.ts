@@ -60,7 +60,7 @@ export class HomeComponent implements OnInit {
     this.cartService.addToCart(cart.product, cart.total);
   }
 
-  ngOnInit(): void {
+  public ngOnInit(): void {
   }
 
 }

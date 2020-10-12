@@ -7,8 +7,8 @@ import {BaseService} from './base.service';
   providedIn: 'root'
 })
 export class MainRestService extends BaseService {
-  baseUrl = '';
-  progressCount = 0;
+  public baseUrl = '';
+  private progressCount = 0;
 
   constructor(public configService: ConfigService, public httpClient: HttpClient, private ngZone: NgZone) {
     super(httpClient, configService);

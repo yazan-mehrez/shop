@@ -7,7 +7,7 @@ require('isomorphic-form-data');
 @Injectable()
 export abstract class BaseService {
   private progress = new BehaviorSubject('0');
-  currentProgress = this.progress.asObservable();
+  public currentProgress = this.progress.asObservable();
   constructor(public httpClient: HttpClient, public configService: ConfigService) { }
 
   protected handleError(error: any) {
@@ -35,14 +35,14 @@ export abstract class BaseService {
     return Observable.throw(modelStateErrors || 'Server error');*/
   }
 
-  changeMessage(message: string) {
+  private changeMessage(message: string) {
     this.progress.next(message);
   }
 
 
 
   // tslint:disable-next-line:max-line-length
-  restRequest(data: any, serverUrl: string, authtoken: string, type: string = 'POST', isJson: boolean = true, fileToUpload: FormData = null): Promise<any> {
+  public restRequest(data: any, serverUrl: string, authtoken: string, type: string = 'POST', isJson: boolean = true, fileToUpload: FormData = null): Promise<any> {
     return new Promise((resolver, reject) => {
 
       const formData = fileToUpload || new FormData();
